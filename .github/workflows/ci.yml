@@ -34,3 +34,13 @@ jobs:
           docker push walkerkyle/nlw.service.passin:${{steps.generate_sha.outputs.sha}}
           docker tag walkerkyle/nlw.service.passin:${{steps.generate_sha.outputs.sha}} walkerkyle/nlw.service.passin:latest
           docker push walkerkyle/nlw.service.passin:latest
+
+      - name: Update Image tag
+        uses: fjogeleit/yaml-update-action@main
+        with:
+          branch: master
+          valueFile: deploy/values.yaml
+          propertypath: "image.tag"
+          value: ${{steps.generate_sha.outputs.sha}}
+          commitChange: true
+          message: "bew: updated tag in values helm"
