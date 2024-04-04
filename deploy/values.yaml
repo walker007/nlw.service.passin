@@ -2,16 +2,16 @@ replicaCount: 5
 image:
   repository: walkerkyle/nlw.service.passin
   pullPolicy: Always
-  tag: 660b08b
+  tag: f9171bd
   port: 3333
 imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+nameOverride: ''
+fullnameOverride: ''
 serviceAccount:
   create: true
   automount: true
   annotations: {}
-  name: ""
+  name: ''
 podAnnotations: {}
 podLabels: {}
 podSecurityContext: {}
@@ -21,7 +21,7 @@ service:
   port: 80
 ingress:
   enabled: false
-  className: ""
+  className: ''
   annotations: {}
   hosts:
     - host: chart-example.local
