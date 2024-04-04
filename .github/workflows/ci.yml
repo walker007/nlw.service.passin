@@ -41,6 +41,6 @@ jobs:
           branch: master
           valueFile: deploy/values.yaml
           propertypath: "image.tag"
-          value: ${{steps.generate_sha.outputs.sha}}
+          value: "${{steps.generate_sha.outputs.sha}}"
           commitChange: true
-          message: "bew: updated tag in values helm"
+          message: "new: updated tag in values helm"
