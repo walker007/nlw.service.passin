@@ -23,7 +23,11 @@ export const app = fastify().withTypeProvider<ZodTypeProvider>();
 app.register(fastifyCors, {
   origin: "*",
 });
-
+const health = (app: FastifyInstance) => {
+  app
+    .withTypeProvider<ZodTypeProvider>()
+    .get("/healthz", async (req, res) => res.status(200).send());
+};
 app.register(fastifySwagger, {
   swagger: {
     consumes: ["application/json"],
@@ -51,9 +55,7 @@ app.register(getEvent);
 app.register(getAttendeeBadge);
 app.register(checkIn);
 app.register(getEventAttendees);
-app.register((app: FastifyInstance) => {
-  app.get("/healthz", async (req, res) => res.status(200).send());
-});
+app.register(health);
 app.setErrorHandler(errorHandler);
 
 app.listen({ port: 3333, host: "0.0.0.0" }).then(() => {
