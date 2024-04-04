@@ -2,7 +2,7 @@ replicaCount: 5
 image:
   repository: walkerkyle/nlw.service.passin
   pullPolicy: Always
-  tag: e9667d1
+  tag: 660b08b
   port: 3333
 imagePullSecrets: []
 nameOverride: ''
