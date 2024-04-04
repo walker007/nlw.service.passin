@@ -5,13 +5,13 @@ image:
   tag: 660b08b
   port: 3333
 imagePullSecrets: []
-nameOverride: ''
-fullnameOverride: ''
+nameOverride: ""
+fullnameOverride: ""
 serviceAccount:
   create: true
   automount: true
   annotations: {}
-  name: ''
+  name: ""
 podAnnotations: {}
 podLabels: {}
 podSecurityContext: {}
@@ -21,7 +21,7 @@ service:
   port: 80
 ingress:
   enabled: false
-  className: ''
+  className: ""
   annotations: {}
   hosts:
     - host: chart-example.local
@@ -46,3 +46,24 @@ volumeMounts: []
 nodeSelector: {}
 tolerations: []
 affinity: {}
+startupProbe:
+  httpGet:
+    path: /healthz
+    port: http
+  initialDelaySeconds: 40
+  failureThreshold: 5
+  periodSeconds: 10
+livenessProbe:
+  httpGet:
+    path: /healthz
+    port: http
+  initialDelaySeconds: 60
+  failureThreshold: 5
+  periodSeconds: 10
+readinessProbe:
+  httpGet:
+    path: /healthz
+    port: http
+  initialDelaySeconds: 60
+  failureThreshold: 5
+  periodSeconds: 10
